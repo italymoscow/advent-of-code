@@ -26,7 +26,7 @@ import copy  # to create a deep copy of the stacks_dict
 def create_stacks_dict(stacks_info: list):
     '''
     Returns a dict holding the initial stack:
-#   {"stack_name": ["bottom_crate", ..., "top_crate"]}
+        {"stack_name": ["bottom_crate", ..., "top_crate"]}
     '''
     stacks_dict = {}
 
