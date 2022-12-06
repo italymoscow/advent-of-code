@@ -83,7 +83,10 @@ def part_1(stacks_dict: dict):
 
     print("PART 1: Top crates in the stacks:")
     for stacks in stacks_dict.values():
-        print(stacks[-1], end="")
+        if len(stacks) > 0:
+            print(stacks[-1], end="")
+        else:
+            "_"
 
 
 def part_2(stacks_dict: dict):
@@ -105,7 +108,10 @@ def part_2(stacks_dict: dict):
 
     print("PART 2: Top crates in the stacks:")
     for stacks in stacks_dict.values():
-        print(stacks[-1], end="")
+        if len(stacks) > 0:
+            print(stacks[-1], end="")
+        else:
+            "_"
 
 
 # Extract initial stack information and movement instructions from input file
