@@ -82,7 +82,7 @@ def part_1():
     """
     tot_size = sum(filter(lambda dir_size: dir_size <=
                    100000, file_structure.values()))
-    
+
     print("PART 1. Total size of folders less than 100 Kb:", tot_size)
 
 
@@ -101,8 +101,13 @@ def part_2():
     freed_up_space = min(filter(lambda dir_size: dir_size >=
                                 space_to_free_up, file_structure.values()))
 
-    folder_to_delete = list(filter(
-        lambda item: item[1] == freed_up_space, file_structure.items()))[0][0]
+    # Using filter seems to work slower:
+    # folder_to_delete = list(filter(
+    #     lambda item: item[1] == freed_up_space, file_structure.items()))[0][0]
+
+    # Using lists seems to work faster
+    folder_to_delete = list(file_structure.keys())[list(
+        file_structure.values()).index(freed_up_space)]
 
     print("PART 2. Folder to delete: " +
           str(folder_to_delete) + ", freed up space:", freed_up_space)
