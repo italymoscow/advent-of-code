@@ -2,7 +2,7 @@
 Solution to the Day 8, Part 1 and 2.
 
 Returns:
-    PART 1. How many trees are visible from outside the grid: 1679
+    PART 1. Trees visible from outside the grid: 1679
     PART 2. The highest scenic score possible for any tree: 536625
 """
 
@@ -14,8 +14,9 @@ def part_1(trees_visible_count):
     """
     Solution to Part 1. Prints the result.
     """
+    # Loop through all trees except those on the edges
     for i in range(1, grid_width - 1):
-        for j in range(1, grid_hight - 1):
+        for j in range(1, grid_height - 1):
             tree_height = grid[i][j]
 
             # Check trees to the left
@@ -42,7 +43,7 @@ def part_1(trees_visible_count):
                 trees_visible_count += 1
                 continue
 
-    print("PART 1. How many trees are visible from outside the grid:",
+    print("PART 1. Trees visible from outside the grid:",
           trees_visible_count)
 
 
@@ -50,11 +51,13 @@ def part_2():
     """
     Solution to Part 2. Prints the result.
     """
-    tree_scores = []
-    for i in range(1, grid_width - 1):
-        for j in range(1, grid_hight - 1):
+    tree_scores = [] # will hold the score of all trees except edges
+
+    # Loop through all trees except those on the edges
+    for i in range(1, grid_width - 1): # row
+        for j in range(1, grid_height - 1): # column
             tree_height = grid[i][j]
-            tree_score_data = 1
+            tree_score = 1
 
             # Check trees above
             trees_above = grid_reversed[j][0:i]
@@ -63,7 +66,7 @@ def part_2():
                 trees_visible_count += 1
                 if x >= tree_height:
                     break
-            tree_score_data *= trees_visible_count
+            tree_score *= trees_visible_count
 
             # Check trees below
             trees_below = grid_reversed[j][i + 1:]
@@ -72,7 +75,7 @@ def part_2():
                 trees_visible_count += 1
                 if x >= tree_height:
                     break
-            tree_score_data *= trees_visible_count
+            tree_score *= trees_visible_count
 
             # Check trees to the left
             trees_left = grid[i][0:j]
@@ -81,7 +84,7 @@ def part_2():
                 trees_visible_count += 1
                 if x >= tree_height:
                     break
-            tree_score_data *= trees_visible_count
+            tree_score *= trees_visible_count
 
             # Check trees to the right
             trees_right = grid[i][j + 1:]
@@ -90,9 +93,9 @@ def part_2():
                 trees_visible_count += 1
                 if x >= tree_height:
                     break
-            tree_score_data *= trees_visible_count
+            tree_score *= trees_visible_count
 
-            tree_scores.append(tree_score_data)
+            tree_scores.append(tree_score)
     
     highest_score = max(tree_scores)
     
@@ -105,19 +108,23 @@ input_file = open(cur_path + "\\08_input.txt", "r")
 input_strings = input_file.readlines()
 input_file.close()
 
+# Create a grid of tree heights of type int to process row-wise
 grid = []
 for input_string in input_strings:
-    row_hights = list(input_string.rstrip())
-    row_hights = list(map(int, row_hights))
-    grid.append(row_hights)
-grid_width = len(grid[0])
-grid_hight = len(grid)
+    row_heights = list(input_string.rstrip())
+    row_heights = list(map(int, row_heights))
+    grid.append(row_heights)
 
+grid_width = len(grid[0])
+grid_height = len(grid)
+
+# Create a reversed grid to facilitate processing columns
 grid_reversed = []
-for j in range(0, grid_hight):
+for j in range(0, grid_height):
     grid_reversed.append([item[j] for item in grid])
 
-trees_edge_count = 2 * (grid_width - 1) + 2 * (grid_hight - 1)
+# Count edge trees that are all visible
+trees_edge_count = 2 * (grid_width - 1) + 2 * (grid_height - 1)
 trees_visible_count = trees_edge_count
 
 if __name__ == "__main__":
