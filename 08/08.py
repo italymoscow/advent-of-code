@@ -51,11 +51,11 @@ def part_2():
     """
     Solution to Part 2. Prints the result.
     """
-    tree_scores = [] # will hold the score of all trees except edges
+    tree_scores = []  # will hold the score of all trees except edges
 
     # Loop through all trees except those on the edges
-    for i in range(1, grid_width - 1): # row
-        for j in range(1, grid_height - 1): # column
+    for i in range(1, grid_width - 1):  # row
+        for j in range(1, grid_height - 1):  # column
             tree_height = grid[i][j]
             tree_score = 1
 
@@ -96,9 +96,9 @@ def part_2():
             tree_score *= trees_visible_count
 
             tree_scores.append(tree_score)
-    
+
     highest_score = max(tree_scores)
-    
+
     print("PART 2. The highest scenic score possible for any tree:",
           highest_score)
 
