@@ -10,7 +10,7 @@ import logging
 import os
 
 
-def part_1(input_strings: list):
+def part_1():
     """
     Solution to Part 1. Prints the result.
     """
@@ -46,7 +46,7 @@ def part_1(input_strings: list):
           tail_positions_unique_count)
 
 
-def part_2(input_strings):
+def part_2():
     """
     Solution to Part 2. Prints the result. 
     Can also be used to solve part_1. Just change nodes_number to 2.
@@ -212,6 +212,8 @@ def move_trailing_nodes(rope_nodes: dict):
             logging.debug("Node " + str(i) + ": " + str(node))
             if i == len(rope_nodes) - 1:
                 is_tail_position_new = True
+        else:
+            break # Do not process the remaining nodes. They won't be moved.
 
     return rope_nodes
 
@@ -229,5 +231,5 @@ if __name__ == "__main__":
     logging.basicConfig(level=logging.DEBUG, format="%(message)s")
     logging.disable(logging.CRITICAL)
     input_strings = read_input("09_input.txt")
-    part_1(input_strings)
-    part_2(input_strings)
+    part_1()
+    part_2()
