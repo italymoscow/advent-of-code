@@ -11,3 +11,4 @@ Solutions to the Advent of Code 2022 (see https://adventofcode.com/2022).
 - Day 09: [README.md](09/README.md), [folder /09](09/)
 - Day 10: [README.md](10/README.md), [folder /10](10/)
 - Day 11: [README.md](11/README.md), [folder /11](11/)
+- Day 13: [README.md](13/README.md), [folder /13](13/)
