@@ -15,3 +15,4 @@ Solutions to the Advent of Code 2022 (see https://adventofcode.com/2022).
 - Day 13: [README.md](13/README.md), [folder /13](13/)
 - ...
 - Day 17: [README.md](17/README.md), [folder /17](17/)
+- Day 18: [README.md](18/README.md), [folder /18](17/)
