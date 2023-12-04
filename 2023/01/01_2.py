@@ -6,13 +6,14 @@ The sum of all of the calibration values
 '''
 
 
+import datetime
 import os
 
 
 def main():
 
     cur_path = os.path.dirname(os.path.abspath(__file__))
-    input_file = open(cur_path + "\\01_input_test.txt", "r")
+    input_file = open(cur_path + "\\01_input.txt", "r")
     lines = input_file.readlines()
     input_file.close()
 
@@ -23,6 +24,8 @@ def main():
     # Get min length of the keys in the numbers dictionary
     max_key_len = len(min(numbers.keys(), key=len))
 
+    output_file = open(cur_path + "\\01_02_output.txt", "a")
+
     sum_of_calibrations = 0
 
     for line in lines:
@@ -32,13 +35,17 @@ def main():
         if line[0].isdigit() and line[-1].isdigit():
             calibration = int(line[0] + line[-1])
             sum_of_calibrations += calibration
+            
+            # Write line to file
+            output_file.write(str(calibration) + ": " + line + " (unchanged) \n")
+            
             continue
 
         # Check if line starts with any of the keys in the numbers dictionary
         line_orig = line
         line_orig_len = len(line_orig)
         pos = 0
-        while pos <= line_orig_len - max_key_len:
+        while pos <= line_orig_len:
             substring = line_orig[pos:line_orig_len]
             for key in numbers.keys():
                 if substring.startswith(key):
@@ -47,10 +54,6 @@ def main():
                     pos += len(key) - 1
                     break
             pos += 1
-
-        # # Write line to file
-        # output_file = open(cur_path + "\\01_output.txt", "a")
-        # output_file.write(line + "\n")
 
         # Find the first digit in the line
         for char in line:
@@ -67,10 +70,20 @@ def main():
         # Join the first and last digits to form the calibration value, and convert to int
         calibration = int(first_digit_char + last_digit_char)
 
+        # Write line to file
+        output_file.write(str(calibration) + ": " + line + " (" + line_orig + ")\n")
+
         sum_of_calibrations += calibration
 
     print(sum_of_calibrations)
 
+    output_file.close()
+
 
 if __name__ == "__main__":
+    time_start = datetime.datetime.now()
+    print("Start:", time_start)
     main()
+    time_end = datetime.datetime.now()
+    print("End:", time_end)
+    print("Duration:", time_end - time_start)
