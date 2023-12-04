@@ -32,6 +32,7 @@ In this schematic, two numbers are not part numbers because they are not adjacen
 Of course, the actual engine schematic is much larger. What is the sum of all of the part numbers in the engine schematic?
 
 --- Part Two ---
+
 The engineer finds the missing part and installs it in the engine! As the engine springs to life, you jump in the closest gondola, finally ready to ascend to the water source.
 
 You don't seem to be going very fast, though. Maybe something is still wrong? Fortunately, the gondola has a phone labeled "help", so you pick it up and the engineer answers.

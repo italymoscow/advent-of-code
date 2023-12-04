@@ -1,4 +1,5 @@
 import os
+import datetime
 
 
 def main():
@@ -78,8 +79,13 @@ def main():
                 sum_part_numbers += number
                 break
         
-    print(sum_part_numbers) # 494956 is too small
+    print("Sum of part numbers:", sum_part_numbers) # 494956 is too small
 
 
 if __name__ == "__main__":
+    time_start = datetime.datetime.now()
+    print("Start:", time_start)
     main()
+    time_end = datetime.datetime.now()
+    print("End:", time_end)
+    print("Duration:", time_end - time_start)
