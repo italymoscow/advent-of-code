@@ -30,6 +30,8 @@ def main():
         cards_nums[line_index + 1] = [[winning_nums, own_nums]]
         cards_matches[line_index + 1] = -1  # match_num_cnt not yet calculated
 
+    ORIG_CARDS_CNT = len(cards_nums)
+    
     # Loop through the original card and all its copies
     for key, value in cards_nums.items():
         for card_item in value:
@@ -47,7 +49,8 @@ def main():
 
             # Copy cards
             for i in range(key + 1, key + 1 + match_num_cnt):
-                cards_nums[i].append(cards_nums[i][0])
+                if i <= ORIG_CARDS_CNT:
+                    cards_nums[i].append(cards_nums[i][0])
 
     # Count all values in cards_nums
     tot_cards_cnt = sum(len(value) for value in cards_nums.values())
