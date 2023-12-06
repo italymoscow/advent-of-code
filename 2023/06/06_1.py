@@ -12,11 +12,11 @@ def main():
 
     # Parse input
     times_line = lines[0].replace("Time:", "")
-    times_line = ' '.join(times_line.split())
+    times_line = " ".join(times_line.split())
     times = list(map(int, times_line.split()))
 
     dist_line = lines[1].replace("Distance:", "")
-    dist_line = ' '.join(dist_line.split())
+    dist_line = " ".join(dist_line.split())
     distances = list(map(int, dist_line.split()))
 
     races = []
@@ -35,7 +35,7 @@ def main():
             distance = speed * movement_time
             if distance > race_record:
                 race_wins_cnt += 1
-            
+
         error_margin *= race_wins_cnt
 
     print("Error margin:", error_margin)
