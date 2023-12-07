@@ -22,7 +22,7 @@ def main():
                "five": 5, "six": 6, "seven": 7, "eight": 8, "nine": 9}
 
     # Get min length of the keys in the numbers dictionary
-    max_key_len = len(min(numbers.keys(), key=len))
+    min_key_len = len(min(numbers.keys(), key=len))
 
     output_file = open(cur_path + "\\01_02_output.txt", "a")
 
@@ -45,11 +45,11 @@ def main():
         line_orig = line
         line_orig_len = len(line_orig)
         pos = 0
-        while pos <= line_orig_len:
-            substring = line_orig[pos:line_orig_len]
+        while pos <= line_orig_len and line_orig_len - pos >= min_key_len :
+            substring = line_orig[pos:]
             for key in numbers.keys():
                 if substring.startswith(key):
-                    # replace the key with the value in the numbers dictionary only once
+                    # replace only the first occurrence of the key with the value in the numbers dictionary
                     line = line.replace(key, str(numbers[key]), 1)
                     pos += len(key) - 1
                     break
@@ -75,7 +75,7 @@ def main():
 
         sum_of_calibrations += calibration
 
-    print(sum_of_calibrations)
+    print(sum_of_calibrations) # 54878
 
     output_file.close()
 

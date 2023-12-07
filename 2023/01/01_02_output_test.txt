@@ -1,0 +1,7 @@
+29: 219 (two1nine)
+83: 8wo3 (eightwothree)
+13: abc123xyz (abcone2threexyz)
+24: x2ne34 (xtwone3four)
+42: 4nineeightseven2 (unchanged) 
+14: z1ight234 (zoneight234)
+76: 7pqrst6teen (7pqrstsixteen)
