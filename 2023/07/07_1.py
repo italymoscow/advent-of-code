@@ -11,7 +11,6 @@ def main():
     lines = input_file.readlines()
     input_file.close()
 
-    total_winnings = 0
 
     # Parse input into a list of [[hand_cards], hand_win, hand_type]
     hands = parse_input(lines)
@@ -20,15 +19,17 @@ def main():
     for hand in hands:
         hand[2] = define_hand_type(hand)
 
-    # Sort
+    # Sort by type (2) and hand (0)
     hands_sorted = sorted(hands, key=itemgetter(2, 0))
+    
+    # Calculate total_winnings
+    total_winnings = 0
     for index, hand in enumerate(hands_sorted):
-        print(hand)
+        # print(hand)
         bid = hand[1]
         rank = index + 1
         winning = bid * rank
         total_winnings += winning
-
 
     print("Total Winnings:", total_winnings)
 
@@ -73,13 +74,13 @@ def define_hand_type(hand: list):
         return hand_type
 
     pairs_count = 0
-    for index, unique_card in enumerate(unique_cards):
+    for unique_card in unique_cards:
         card_count = cards.count(unique_card)
         if card_count == 4:
             hand_type = 6  # Four of a kind
             return hand_type
         elif card_count == 3:
-            if index + 1 < len(unique_cards) and cards.count(unique_cards[index + 1]) == 2:
+            if len(unique_cards) == 2:
                 hand_type = 5  # Full house
             else:
                 hand_type = 4  # Three of a kind
