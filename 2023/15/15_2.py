@@ -12,8 +12,11 @@ def main():
 
     steps = line.split(",")
 
+    # boxes Will contain box number (0-255) and a list of lenses: {box_num: [[label, focal_power]]}
     boxes = {}
+    # labels will contain labels and their focal power: {"label": focal_power}
     labels = {}
+
     for step in steps:
         parsed_step = parse_step(step)
         label = parsed_step[0]
@@ -40,7 +43,6 @@ def main():
                 if not lense_found:
                     boxes[box_num].append([label, foc_len])
 
-                # boxes[box_num] = [label, foc_len]
             else:
                 for i, lense in enumerate(lenses):
                     lense_found = False
@@ -52,6 +54,7 @@ def main():
             if operation == "=":
                 boxes[box_num] = [[label, foc_len]]
 
+    # Calculate total focal power
     tot_foc_pwr = 0
     for box, lenses in boxes.items():
         for i, lense in enumerate(lenses):
@@ -62,6 +65,9 @@ def main():
 
 
 def parse_step(step: str):
+    """
+    Returns a list containing the label, operation and focal length of the step
+    """
 
     if "-" in step:
         label = step.split("-")[0]
@@ -71,12 +77,14 @@ def parse_step(step: str):
         label = step.split("=")[0]
         operation = "="
         foc_len = step.split("=")[1]
-    # box_num = get_hash(label)
 
     return [label, operation, foc_len]
 
 
 def get_hash(label: str):
+    """
+    Returns the hash value of the label
+    """
     cur_val = 0
     chars = list(label)
     for char in chars:
